@@ -27,6 +27,7 @@ for idx in range(len(lines)):
 
 # Challenge 2:
 gear_list = []
+numbers_dict = {}
 for idx in range(len(lines)):
 	line = lines[idx]
 	if line:
@@ -43,17 +44,13 @@ for idx in range(len(lines)):
 			if len(adj_numbers) == 2:
 				gear_list.append(adj_numbers)
 
-numbers_dict = {}
-for idx in range(len(lines)):
-	line = lines[idx]
-	if line:
 		numbers = re.finditer(r1, line)
 		for match in numbers:
 			start = match.start()
 			end = match.end()
 			text = match.group()
-			for _ in range(len(text)):
-				numbers_dict[f'{idx}, {start+_}'] = text
+			for t in range(len(text)):
+				numbers_dict[f'{idx}, {start+t}'] = text
 
 for gear in gear_list:
 	gear_power = int(numbers_dict[f'{gear[0][0]}, {gear[0][1]}'])*int(numbers_dict[f'{gear[1][0]}, {gear[1][1]}'])
